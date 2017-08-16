@@ -1,0 +1,11 @@
+b1 = repeat || n2 || n4 || n6 || n8 || n0 || v- || c- || LastChannel || right || left || back || backward || forward
+
+b2 = n1     || n2 || n5 || n6 || n9 || n0 || c+ || c- || up          || right || enter|| back || play     || forward
+
+b3 = n3     || n4 || n5 || n6 || v+ || v- || c+ || c- || down        || left  || enter|| back
+
+b4 = n7     || n8 || n9 || n0 || v+ || v- || c+ || c- || menu        || backward || play || forward
+
+b5 = mute   || Last Channel   || UP || right || down  || left || enter || back || menu || backward || play || forward
+
+signal = OR all buttons
