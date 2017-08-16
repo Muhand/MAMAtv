@@ -1,0 +1,21 @@
+<RCC>
+    <qresource prefix="/">
+        <file>ChannelViewer.qml</file>
+        <file>ChannelInfo.qml</file>
+        <file>imgs/settings_128x128.png</file>
+        <file>imgs/settings_64x64.png</file>
+        <file>imgs/television.png</file>
+        <file>imgs/television_32x32.png</file>
+        <file>Guide.qml</file>
+        <file>Config.qml</file>
+        <file>qmldir</file>
+        <file>Boot.qml</file>
+        <file>VolumeInformation.qml</file>
+        <file>Channel.qml</file>
+        <file>GuideListItemDel.qml</file>
+        <file>Menu.qml</file>
+        <file>MenuButton.qml</file>
+        <file>MenuModel.qml</file>
+        <file>BootLogModel.qml</file>
+    </qresource>
+</RCC>
