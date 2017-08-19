@@ -4,6 +4,8 @@
 #include <QObject>
 #include <QString>
 #include <string>
+#include <fstream>
+class QTimer;
 
 class Boot : public QObject{
     Q_OBJECT
@@ -54,6 +56,10 @@ private:
     QString m_errorMsg;
     QString m_currentChannelNum;
     QString m_xmlContent;
+    QTimer *timer;
+    QString tempXMLContent;
+    std::ifstream channelsList;
+//    int counter = 0;
 
     ///////////////////////////////////////
     //Functions

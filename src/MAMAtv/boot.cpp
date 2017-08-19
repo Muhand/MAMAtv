@@ -6,7 +6,8 @@
 #include <curl/curl.h>
 #include <curl/easy.h>
 #include <sstream>
-
+#include <QThread>
+#include <QTimer>
 using namespace std;
 
 //size_t write_data(void *ptr, size_t size, size_t nmemb, void *stream) {
@@ -27,7 +28,7 @@ size_t write_out_data(void *ptr, size_t size, size_t nmemb, void *stream) {
 }
 Boot::Boot(QObject *parent) : QObject(parent)
 {
-    emit created();
+//    emit created();
 }
 
 bool Boot::errorOccured()
@@ -218,6 +219,24 @@ CLEANUP:
     return;
 }
 
+
+//void Boot::load()
+//{
+
+//    QTimer *timer = new QTimer(this);
+
+//     connect(timer, &QTimer::timeout, [timer, this](){
+//         setErrorMsg("test: " + QString::number(counter));
+//         counter++;
+//         if(counter > 10000){
+//             timer->stop();
+//             timer->deleteLater();
+//         }
+//     });
+// timer->start(0);
+
+//}
+
 bool Boot::createConfigDirectory()
 {
     //Log
@@ -337,43 +356,83 @@ void Boot::configure(const QString &line)
 bool Boot::loadXMLContent()
 {
     bool res;
-    ifstream channelsList;
-    QString tempXMLContent;
+        timer = new QTimer(this);
 
-    setErrorMsg("Parsing channels.xml");
-    setErrorMsg("Trying to open channels.xml");
+        setErrorMsg("Parsing channels.xml");
+        setErrorMsg("Trying to open channels.xml");
 
-    channelsList.open("config/channels.xml");
+        channelsList.open("config/channels.xml");
 
 
-    if(!channelsList.is_open())
-    {
-        setErrorMsg("There was an error opening channels.xml");
-        res = false;
-    }
-    else
-    {
-        setErrorMsg("channels.xml was opened successfully");
-        setErrorMsg("now reading from channels.xml");
-
-        while(!channelsList.eof())
+        if(!channelsList.is_open())
         {
-            string temp;
-//            channelsList >> temp;
-            getline(channelsList, temp);
-            QString qTemp = QString::fromStdString(temp);
+            setErrorMsg("There was an error opening channels.xml");
+            res = false;
+        }
+        else
+        {
+            setErrorMsg("channels.xml was opened successfully");
+            setErrorMsg("now reading from channels.xml");
 
-            setErrorMsg("Parsing " +qTemp);
-            tempXMLContent += qTemp+"\n";
+            connect(timer, &QTimer::timeout, [this](){
+                if(!channelsList.eof())
+                {
+                    std::string temp;
+                    getline(channelsList, temp);
+                    QString qTemp = QString::fromStdString(temp);
+                    setErrorMsg("Parsing " +qTemp);
+                    tempXMLContent += qTemp+"\n";
+                }
+                else{
+                    setXmlContent(tempXMLContent);
+                    setErrorMsg("Parsing is complete");
+                }
+
+            });
+            timer->start(10);
+
+            res = true;
         }
 
-        setXmlContent(tempXMLContent);
-
-        setErrorMsg("Parsing is complete");
-
-        res = true;
-    }
-
-
     return res;
+//    bool res;
+//    ifstream channelsList;
+//    QString tempXMLContent;
+
+//    setErrorMsg("Parsing channels.xml");
+//    setErrorMsg("Trying to open channels.xml");
+
+//    channelsList.open("config/channels.xml");
+
+
+//    if(!channelsList.is_open())
+//    {
+//        setErrorMsg("There was an error opening channels.xml");
+//        res = false;
+//    }
+//    else
+//    {
+//        setErrorMsg("channels.xml was opened successfully");
+//        setErrorMsg("now reading from channels.xml");
+
+//        while(!channelsList.eof())
+//        {
+//            string temp;
+////            channelsList >> temp;
+//            getline(channelsList, temp);
+//            QString qTemp = QString::fromStdString(temp);
+
+//            setErrorMsg("Parsing " +qTemp);
+//            tempXMLContent += qTemp+"\n";
+//        }
+
+//        setXmlContent(tempXMLContent);
+
+//        setErrorMsg("Parsing is complete");
+
+//        res = true;
+//    }
+
+
+//    return res;
 }

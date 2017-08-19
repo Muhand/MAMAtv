@@ -37,13 +37,6 @@ Item{
             height: 480
             color:"black"
             focus:true
-            //            Keys.onPressed: {
-            //                event.accepted = true;
-            //                if(event.key === Qt.Key_B)
-            //                {
-            //                    booting.load();
-            //                }
-            //            }
 
             Component.onCompleted: {
                 booting.load();

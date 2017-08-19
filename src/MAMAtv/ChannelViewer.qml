@@ -168,6 +168,7 @@ Rectangle {
             url:Config.currentChannel.ch_url
 //            autoplay:false
 //            vidwidget.play:0
+
             onVolumeChanged:{
                 //                console.log(vidwidget.volume);
                 volumeInfo.currentVol=vidwidget.volume;
