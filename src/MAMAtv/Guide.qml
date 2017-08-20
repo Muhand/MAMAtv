@@ -22,8 +22,7 @@ Rectangle{
             //                        main.channelName="testaaa"
             //            channelName = menuContent.currentItem.ch_name
             //            channelURL = menuContent.currentItem.ch_url
-
-            Config.currentChannelNum = parseInt(menuContent.currentItem.ch_num)
+            Config.currentChannelNum = menuContent.currentItem.ch_number;
             //            Config.currentChannel.ch_id = menuContent.currentItem.ch_id
             //            Config.currentChannel.ch_num = menuContent.currentItem.ch_num
             //            Config.currentChannel.ch_name = menuContent.currentItem.ch_name

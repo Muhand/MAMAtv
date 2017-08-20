@@ -26,13 +26,19 @@ Rectangle {
         anchors.fill: parent
         focus:true
 
-        //        Component.onCompleted:{
-        //            if(Config.loaded === false)
-        //            {
-        //                Config.loaded = true;
-        //                loadConfigFile();
-        //            }
-        //        }
+//        MouseArea{
+//            anchors.fill: parent
+//            enabled:false
+//            cursorShape: Qt.BlankCursor
+//        }
+
+//        Component.onCompleted:{
+//            if(Config.loaded === false)
+//            {
+//                Config.loaded = true;
+//                loadConfigFile();
+//            }
+//        }
 
         Keys.onPressed: {
             event.accepted = true;
@@ -166,8 +172,8 @@ Rectangle {
             id: vidwidget
             anchors.fill: parent
             url:Config.currentChannel.ch_url
-//            autoplay:false
-//            vidwidget.play:0
+            //            autoplay:false
+            //            vidwidget.play:0
 
             onVolumeChanged:{
                 //                console.log(vidwidget.volume);
@@ -182,11 +188,7 @@ Rectangle {
                 height: (parent.height*20)/100
                 backgroundOpacity: 0.7
                 radius:10
-                //                channelNameProp: channelName
-                //                channelNameProp: "ألعراقية"
                 channelNameProp: Config.currentChannel.ch_name
-
-                //                channelNumberProp: "1"
                 channelNumberProp: Config.currentChannel.ch_num
                 headerIcon: "imgs/television_32x32.png"
             }
